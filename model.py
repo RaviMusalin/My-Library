@@ -17,7 +17,7 @@ class User(db.Model):
     password = db.Column(db.String)
 
     ratings = db.relationship("Rating", back_populates="user")
-    ownedbooks = db.relationship("Owned", back_populates="user")
+    ownedbook = db.relationship("Owned", back_populates="user")
 
     def __repr__(self):
         return f"<User user_id={self.user_id} username={self.username} email={self.email}>"
@@ -35,7 +35,7 @@ class Book(db.Model):
     # Should ISBN be here?
 
     ratings = db.relationship("Rating", back_populates="books")
-    ownedbooks = db.relationship("Owned", back_populates="books")
+    ownedbook = db.relationship("Owned", back_populates="books")
 
     def __repr__(self):
         return f"<Movie movie_id={self.book_id} title={self.title} author={self.author}>"
@@ -51,7 +51,7 @@ class Rating(db.Model):
     book_id = db.Column(db.Integer, db.ForeignKey("books.book_id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
-    book = db.relationship("Book", back_populates="ratings")
+    books = db.relationship("Book", back_populates="ratings")
     user = db.relationship("User", back_populates="ratings")
 
     def __repr__(self):
@@ -66,8 +66,8 @@ class Owned(db.Model):
     book_id = db.Column(db.Integer, db.ForeignKey("books.book_id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
-    book = db.relationship("Book", back_populates="ownedbooks")
-    user = db.relationship("User", back_populates="ownedbooks")
+    books = db.relationship("Book", back_populates="ownedbook")
+    user = db.relationship("User", back_populates="ownedbook")
 
     def __repr__(self):
         return f"<Owned owned_books_id={self.owned_books_id}>"
