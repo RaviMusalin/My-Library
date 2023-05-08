@@ -13,12 +13,14 @@ class User(db.Model):
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     email = db.Column(db.String, unique=True)
+    username = db.Column(db.String)
     password = db.Column(db.String)
 
-    ratings = db.relationship("Rating", back_populates="users")
+    ratings = db.relationship("Rating", back_populates="user")
+    ownedbooks = db.relationship("Owned", back_populates="user")
 
     def __repr__(self):
-        return f"<User user_id={self.user_id} email={self.email}>"
+        return f"<User user_id={self.user_id} username={self.username} email={self.email}>"
 
 
 class Book(db.Model):
@@ -29,11 +31,14 @@ class Book(db.Model):
     book_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     title = db.Column(db.String)
     author = db.Column(db.Text)
+    genre = db.Column(db.Text)
+    # Should ISBN be here?
 
     ratings = db.relationship("Rating", back_populates="books")
+    ownedbooks = db.relationship("Owned", back_populates="books")
 
     def __repr__(self):
-        return f"<Movie movie_id={self.movie_id} title={self.title}>"
+        return f"<Movie movie_id={self.book_id} title={self.title} author={self.author}>"
 
 
 class Rating(db.Model):
@@ -46,14 +51,29 @@ class Rating(db.Model):
     book_id = db.Column(db.Integer, db.ForeignKey("books.book_id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
-    movie = db.relationship("Movie", back_populates="ratings")
+    book = db.relationship("Book", back_populates="ratings")
     user = db.relationship("User", back_populates="ratings")
 
     def __repr__(self):
         return f"<Rating rating_id={self.rating_id} score={self.score}>"
+    
+class Owned(db.Model):
+    """A table of the books a user owns"""
+
+    __tablename__ = 'ownedbooks'
+
+    owned_books_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    book_id = db.Column(db.Integer, db.ForeignKey("books.book_id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+
+    book = db.relationship("Book", back_populates="ownedbooks")
+    user = db.relationship("User", back_populates="ownedbooks")
+
+    def __repr__(self):
+        return f"<Owned owned_books_id={self.owned_books_id}>"
 
 
-def connect_to_db(flask_app, db_uri="postgresql:///ratings", echo=True):
+def connect_to_db(flask_app, db_uri="postgresql:///booksdb", echo=True):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
     flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
