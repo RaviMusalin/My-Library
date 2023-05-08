@@ -32,7 +32,7 @@ def create_rating(user, book, score):
     return rating
 
 def create_book_owned(user, book):
-    
+    # What to put in a function to create books owned for a specific user?
     owned_book = Owned(user=user, book=book)
 
     return owned_book
