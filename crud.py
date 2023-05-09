@@ -3,37 +3,38 @@
 from model import db, User, Book, Rating, Owned, connect_to_db
 
 
-def create_user(username, email, password):
+def create_user(username, email, password, type_of_user="user"):
     """Create and return a new user."""
 
-    user = User(username=username, email=email, password=password)
+    user = User(username=username, email=email, password=password, type_of_user=type_of_user)
 
     return user
 
 
-def create_book(title, author, genre):
+def create_book(title, author, genre, isbn=None, book_cover=None):
     """Create and return a new book."""
 
     book = Book(
         title=title,
         author=author,
         genre=genre,
-        # poster_path=poster_path, Book cover from API?
+        isbn=isbn,
+        book_cover=book_cover # Book cover from API?
     )
 
     return book
 
 
-def create_rating(user, book, score):
+def create_rating(user, book, score, body):
     """Create and return a new rating."""
 
-    rating = Rating(user=user, book=book, score=score)
+    rating = Rating(user=user, books=book, score=score, body=body)
 
     return rating
 
 def create_book_owned(user, book):
     # What to put in a function to create books owned for a specific user?
-    owned_book = Owned(user=user, book=book)
+    owned_book = Owned(user=user, books=book)
 
     return owned_book
 

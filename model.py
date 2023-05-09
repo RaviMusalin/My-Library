@@ -15,6 +15,7 @@ class User(db.Model):
     email = db.Column(db.String, unique=True)
     username = db.Column(db.String)
     password = db.Column(db.String)
+    type_of_user = db.Column(db.String)
 
     ratings = db.relationship("Rating", back_populates="user")
     ownedbook = db.relationship("Owned", back_populates="user")
@@ -32,13 +33,14 @@ class Book(db.Model):
     title = db.Column(db.String)
     author = db.Column(db.Text)
     genre = db.Column(db.Text)
-    # Should ISBN be here?
+    isbn = db.Column(db.String)
+    book_cover = db.Column(db.String)
 
     ratings = db.relationship("Rating", back_populates="books")
     ownedbook = db.relationship("Owned", back_populates="books")
 
     def __repr__(self):
-        return f"<Movie movie_id={self.book_id} title={self.title} author={self.author}>"
+        return f"<Book book_id={self.book_id} title={self.title} author={self.author} genre={self.genre}>"
 
 
 class Rating(db.Model):
@@ -50,6 +52,7 @@ class Rating(db.Model):
     score = db.Column(db.Integer)
     book_id = db.Column(db.Integer, db.ForeignKey("books.book_id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    body = db.Column(db.Text)
 
     books = db.relationship("Book", back_populates="ratings")
     user = db.relationship("User", back_populates="ratings")
@@ -62,7 +65,7 @@ class Owned(db.Model):
 
     __tablename__ = 'ownedbooks'
 
-    owned_books_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    owned_book_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey("books.book_id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
@@ -70,7 +73,7 @@ class Owned(db.Model):
     user = db.relationship("User", back_populates="ownedbook")
 
     def __repr__(self):
-        return f"<Owned owned_books_id={self.owned_books_id}>"
+        return f"<Owned owned_books_id={self.owned_book_id}>"
 
 
 def connect_to_db(flask_app, db_uri="postgresql:///booksdb", echo=True):
