@@ -36,3 +36,11 @@ for book in book_data:
 
 model.db.session.add_all(books_in_db)
 model.db.session.commit()
+
+for n in range(10):
+    email = f'user{n}@test.com'  # Voila! A unique email!
+    password = 'test'
+
+    # TODO: create a user here
+
+    # TODO: create 10 ratings for the user
