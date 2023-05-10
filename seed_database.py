@@ -9,5 +9,8 @@ import crud
 import model
 import server
 
-os.system("dropdb booksdb")
-# More code will go here
+os.system('dropdb booksdb')
+os.system('createdb booksdb')
+
+model.connect_to_db(server.app)
+model.db.create_all()
