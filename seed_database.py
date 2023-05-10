@@ -23,8 +23,7 @@ with open('data/books.json') as f:
 # to create fake ratings later
 books_in_db = []
 for book in book_data:
-    # TODO: get the title, overview, and poster_path from the movie
-    # dictionary. Then, get the release_date and convert it to a
-    # datetime object with datetime.strptime
+    # TODO: get the title, author, and genre from the book
+    # dictionary. Then, Get the ISBN and book cover (From API?)
 
-    # TODO: create a movie here and append it to movies_in_db
+    # TODO: create a movie here and append it to books_in_db
