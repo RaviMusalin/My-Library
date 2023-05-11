@@ -41,15 +41,17 @@ model.db.session.commit()
 for n in range(10):
     email = f"user{n}@test.com"  # Voila! A unique email!
     password = "test"
+    username = f"{n}user" # placeholder for username
 
-    user = crud.create_user(email, password)
+    user = crud.create_user(username, email, password)
     model.db.session.add(user)
 
     for _ in range(10):
         random_book = choice(books_in_db)
         score = randint(1, 5)
+        body = "This is a test body text" # Placeholder for written review 
 
-        rating = crud.create_rating(user, random_book, score)
+        rating = crud.create_rating(user, random_book, score, body)
         model.db.session.add(rating)
 
 model.db.session.commit()
