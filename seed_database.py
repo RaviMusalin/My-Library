@@ -37,10 +37,19 @@ for book in book_data:
 model.db.session.add_all(books_in_db)
 model.db.session.commit()
 
+
 for n in range(10):
-    email = f'user{n}@test.com'  # Voila! A unique email!
-    password = 'test'
+    email = f"user{n}@test.com"  # Voila! A unique email!
+    password = "test"
 
-    # TODO: create a user here
+    user = crud.create_user(email, password)
+    model.db.session.add(user)
 
-    # TODO: create 10 ratings for the user
+    for _ in range(10):
+        random_book = choice(books_in_db)
+        score = randint(1, 5)
+
+        rating = crud.create_rating(user, random_book, score)
+        model.db.session.add(rating)
+
+model.db.session.commit()
