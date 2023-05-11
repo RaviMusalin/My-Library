@@ -10,8 +10,11 @@ app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
 
-# Replace this with routes and view functions!
+@app.route('/')
+def homepage():
+    """View homepage"""
 
+    return render_template('homepage.html')
 
 if __name__ == "__main__":
     connect_to_db(app)
