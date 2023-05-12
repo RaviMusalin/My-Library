@@ -25,6 +25,11 @@ def create_book(title, author, genre, isbn=None, book_cover=None):
     return book
 
 
+def get_books():
+
+    return Book.query.all()
+
+
 def create_rating(user, book, score, body):
     """Create and return a new rating."""
 
@@ -37,6 +42,7 @@ def create_book_owned(user, book):
     owned_book = Owned(user=user, books=book)
 
     return owned_book
+
 
 
 if __name__ == "__main__":

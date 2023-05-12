@@ -16,6 +16,13 @@ def homepage():
 
     return render_template('homepage.html')
 
+@app.route('/books')
+def all_books():
+
+    books = crud.get_books()
+
+    return render_template("all_books.html", books=books) # QUESTION: Why is book = books?
+
 if __name__ == "__main__":
     connect_to_db(app)
     app.run(host="0.0.0.0", debug=True)
