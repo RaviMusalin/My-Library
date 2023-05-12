@@ -26,6 +26,7 @@ def create_book(title, author, genre, isbn=None, book_cover=None):
 
 
 def get_books():
+    """Get all books and return"""
 
     return Book.query.all()
 
@@ -42,6 +43,10 @@ def create_book_owned(user, book):
     owned_book = Owned(user=user, books=book)
 
     return owned_book
+
+def book_details_by_id(book_id):
+
+    return Book.query.get(book_id)
 
 
 

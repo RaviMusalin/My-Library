@@ -23,6 +23,15 @@ def all_books():
 
     return render_template("all_books.html", books=books) # QUESTION: Why is book = books?
 
+
+@app.route('/books/<book_id>')
+def book_details(book_id):
+    """Show details of book"""
+
+    book = crud.book_details_by_id(book_id)
+
+    return render_template("book_details.html", book=book)
+
 if __name__ == "__main__":
     connect_to_db(app)
     app.run(host="0.0.0.0", debug=True)
