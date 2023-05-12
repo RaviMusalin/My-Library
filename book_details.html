@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ book.title }} - Details{% endblock %}
+
+{% block body %}
+<h1>{{ book.title }}</h1>
+
+<p>
+  {{ book.title }}
+  {{ book.author}}
+  {{ book.genre }}
+</p>
+
+<!-- <img src="{{ movie.poster_path }}"> -->
+{% endblock %}
