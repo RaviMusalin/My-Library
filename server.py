@@ -87,7 +87,7 @@ def user_login():
         session["user_username"] = user.username
         flash(f"Welcome back, {user.username}!")    
 
-    return redirect("/")
+    return redirect("/") # Does logging in save to local DB?
 
 if __name__ == "__main__":
     connect_to_db(app)
