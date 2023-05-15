@@ -18,10 +18,11 @@ def homepage():
 
 @app.route('/books')
 def all_books():
+    """Shows a list of all books"""
 
     books = crud.get_books()
 
-    return render_template("all_books.html", books=books) # QUESTION: Why is book = books?
+    return render_template("all_books.html", books=books) # QUESTION: Why is book = books? What does declaring this do?
 
 
 @app.route('/books/<book_id>')
@@ -43,6 +44,7 @@ def get_user_details(user_id):
 
 @app.route('/users')
 def all_users():
+    """Shows a list of all users"""
 
     users = crud.user_details()
 
@@ -68,6 +70,24 @@ def register_user():
     return redirect("/")
 #  REFER BACK TO API LECTURE
 
+
+@app.route("/login", methods=["POST"])
+def user_login():
+    """User login"""
+
+    username = request.form.get("username")
+    # email = request.form.get("email")
+    password = request.form.get("password")
+
+    user = crud.get_user_by_username(username)
+    if not user or user.password != password:
+        flash("Please check your login credentials")
+    else:
+        # Log in user by storing the user's username in session
+        session["user_username"] = user.username
+        flash(f"Welcome back, {user.username}!")    
+
+    return redirect("/")
 
 if __name__ == "__main__":
     connect_to_db(app)

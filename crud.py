@@ -39,26 +39,36 @@ def create_rating(user, book, score, body):
     return rating
 
 def create_book_owned(user, book):
+    """Create a book owned for a specific user"""
     # What to put in a function to create books owned for a specific user?
     owned_book = Owned(user=user, books=book)
 
     return owned_book
 
 def book_details_by_id(book_id):
+    """Gets a book by it's book id"""
 
-    return Book.query.all(book_id)
+    return Book.query.get(book_id)
 
 def user_details():
+    """Gets all users"""
 
     return User.query.all()
 
 def user_details_by_id(user_id):
+    """Gets the details of a specific user"""
 
     return User.query.get(user_id)
 
 def get_user_by_email(email):
+    """Gets a user by checking to see if the email exists"""
    
-        return User.query.filter(User.email == email).first()
+    return User.query.filter(User.email == email).first()
+
+def get_user_by_username(username):
+    """Get user by username"""
+    
+    return User.query.filter(User.username == username).first()
 
 
 if __name__ == "__main__":
