@@ -48,6 +48,12 @@ def all_users():
 
     return render_template("users.html", users=users)
 
+@app.route("/users", methods=["POST"])
+def register_user():
+    """Create a new user."""
+
+#  REFER BACK TO API LECTURE
+
 
 if __name__ == "__main__":
     connect_to_db(app)
