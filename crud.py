@@ -46,8 +46,11 @@ def create_book_owned(user, book):
 
 def book_details_by_id(book_id):
 
-    return Book.query.get(book_id)
+    return Book.query.all(book_id)
 
+def user_details():
+
+    return User.query.all()
 
 
 if __name__ == "__main__":

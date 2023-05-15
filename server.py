@@ -32,6 +32,15 @@ def book_details(book_id):
 
     return render_template("book_details.html", book=book)
 
+
+@app.route('/users')
+def all_users():
+
+    users = crud.user_details()
+
+    return render_template("users.html", users=users)
+
+
 if __name__ == "__main__":
     connect_to_db(app)
     app.run(host="0.0.0.0", debug=True)
