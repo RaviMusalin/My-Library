@@ -32,6 +32,14 @@ def book_details(book_id):
 
     return render_template("book_details.html", book=book)
 
+@app.route('/users/<user_id>')
+def get_user_details(user_id):
+    """Show individual User details"""
+
+    user = crud.user_details_by_id(user_id)
+
+    return render_template("user_details.html", user=user)
+
 
 @app.route('/users')
 def all_users():

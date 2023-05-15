@@ -52,6 +52,10 @@ def user_details():
 
     return User.query.all()
 
+def user_details_by_id(user_id):
+
+    return User.query.get(user_id)
+
 
 if __name__ == "__main__":
     from server import app
