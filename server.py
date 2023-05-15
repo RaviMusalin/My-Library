@@ -48,10 +48,24 @@ def all_users():
 
     return render_template("users.html", users=users)
 
-@app.route("/users", methods=["POST"])
+@app.route("/users", methods=["POST"]) # Why are we allowed two users routes?: Any issues with this?
 def register_user():
     """Create a new user."""
 
+    username = request.form.get("username")
+    email = request.form.get("email")
+    password = request.form.get("password")
+
+    user = crud.get_user_by_email(email)
+    if user:
+        flash("An account with this email already exists")
+    else:  
+        user = crud.create_user(username, email, password)
+        db.session.add(user)
+        db.session.commit()
+        flash("Account created! Please log in.")
+
+    return redirect("/")
 #  REFER BACK TO API LECTURE
 
 
