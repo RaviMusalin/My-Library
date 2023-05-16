@@ -10,5 +10,22 @@
   {{ book.author}}
   {{ book.genre }}
 </p>
+{% if "user_id" in session %}
+<form action="/rate_book" method="POST">
+   <h1>Book Review:</h1>
+    <p>
+      Score <input type="number" name="score">
+    </p>
+
+    <p>
+      Body <input type="text" name="review">
+    </p>
+
+    <p>
+      <input type="submit">
+    </p>
+</form>
+{% endif %}
+
 
 {% endblock %}

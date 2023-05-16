@@ -15,24 +15,11 @@
 <!-- Loop through owned books -->
 <ul>
   {% for book in user.users_library %}
-  <li>{{book.title}}</li>
+  <li><a href="/books/{{ book.book_id }}">
+    {{ book.title }}
+</a></li>
   {% endfor %}
 </ul>
-<form action="/rate_book" method="POST">
-    <p>
-        Book <input type="text" name="book_reviewed">
-    </p>
 
-    <p>
-      Score <input type="number" name="score">
-    </p>
-
-    <p>
-      Body <input type="text" name="review">
-    </p>
-
-    <p>
-      <input type="submit">
-    </p></form>
 
 {% endblock %}
