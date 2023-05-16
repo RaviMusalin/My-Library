@@ -83,15 +83,32 @@ def user_login():
     password = request.form.get("password")
 
     user = crud.get_user_by_username(username)
+
     if not user or user.password != password:
         flash("Please check your login credentials")
+        return redirect('/')
+            
+    else:# Log in user by storing the user's username in session
+        session["user_id"] = user.user_id
+        flash(f"Welcome back, {user.user_name}!")    
+        
+        return redirect('/user_details')
+
+@app.route('/user_details')
+def user_library():
+
+    if "user_id" in session:
+        user_id = session["user_id"]
+        user = crud.get_user_by_id(user_id)
+        user_library = crud.get_users_library(user_id)
+
+        print(user_library)
+
+        return render_template("user_details.html", user = user, user_library = user_library)# Does logging in save to local DB?
+    
     else:
-        # Log in user by storing the user's username in session
-        session["user_username"] = user.username
-        flash(f"Welcome back, {user.username}!")    
-
-    return render_template("user_details.html", user=user) # Does logging in save to local DB?
-
+        flash("Please log in") 
+        return redirect('/')
 
 @app.route('/rate_book', methods=["POST"])
 def book_rating():

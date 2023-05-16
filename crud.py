@@ -6,7 +6,7 @@ from model import db, User, Book, Rating, Owned, connect_to_db
 def create_user(username, email, password, type_of_user="user"):
     """Create and return a new user."""
 
-    user = User(username=username, email=email, password=password, type_of_user=type_of_user)
+    user = User(user_name=username, email=email, password=password, type_of_user=type_of_user)
 
     return user
 
@@ -30,6 +30,17 @@ def get_books():
 
     return Book.query.all()
 
+def get_users_library(user_id):
+
+    
+    user = get_user_by_id(user_id)
+    
+    if user: # make sure we actually got a User
+        return user.users_library
+    else:
+        return []
+
+    
 
 def create_rating(user, book, score, body):
     """Create and return a new rating."""
@@ -55,7 +66,7 @@ def user_details():
 
     return User.query.all()
 
-def user_details_by_id(user_id):
+def get_user_by_id(user_id):
     """Gets the details of a specific user"""
 
     return User.query.get(user_id)
@@ -68,7 +79,7 @@ def get_user_by_email(email):
 def get_user_by_username(username):
     """Get user by username"""
     
-    return User.query.filter(User.username == username).first()
+    return User.query.filter(User.user_name == username).first()
 
 
 if __name__ == "__main__":

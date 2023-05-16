@@ -1,19 +1,22 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ user.username }} - Details{% endblock %}
+{% block title %}{{ user.user_name }} - Details{% endblock %}
 
 {% block body %}
-<h1>{{ user.username }}</h1>
+<h1>{{ user.user_name }}</h1>
 
 <p>
-  {{ user.email }}
-  {{ user.username}}
+  {{ user.user_name}}
 </p>
+
+
 
 <h2>Owned Books:</h2>
 <!-- Loop through owned books -->
 <ul>
-
+  {% for book in user.users_library %}
+  <li>{{book.title}}</li>
+  {% endfor %}
 </ul>
 <form action="/rate_book" method="POST">
     <p>
