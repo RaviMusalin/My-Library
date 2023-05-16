@@ -16,6 +16,7 @@ def homepage():
 
     return render_template('homepage.html')
 
+
 @app.route('/books')
 def all_books():
     """Shows a list of all books"""
@@ -32,6 +33,7 @@ def book_details(book_id):
     book = crud.book_details_by_id(book_id)
 
     return render_template("book_details.html", book=book)
+
 
 @app.route('/users/<user_id>')
 def get_user_details(user_id):
@@ -50,7 +52,8 @@ def all_users():
 
     return render_template("users.html", users=users)
 
-@app.route("/users", methods=["POST"]) # Why are we allowed two users routes?: Any issues with this?
+
+@app.route('/users', methods=["POST"]) # Why are we allowed two users routes?: Any issues with this?
 def register_user():
     """Create a new user."""
 
@@ -71,7 +74,7 @@ def register_user():
 #  REFER BACK TO API LECTURE
 
 
-@app.route("/login", methods=["POST"])
+@app.route('/login', methods=["POST"])
 def user_login():
     """User login"""
 
@@ -88,6 +91,13 @@ def user_login():
         flash(f"Welcome back, {user.username}!")    
 
     return redirect("/") # Does logging in save to local DB?
+
+
+@app.route('/rate_book', methods=["POST"])
+def book_rating():
+
+    return redirect('/users/<user_id>')
+
 
 if __name__ == "__main__":
     connect_to_db(app)
