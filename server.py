@@ -90,13 +90,13 @@ def user_login():
         session["user_username"] = user.username
         flash(f"Welcome back, {user.username}!")    
 
-    return redirect("/") # Does logging in save to local DB?
+    return render_template("user_details.html", user=user) # Does logging in save to local DB?
 
 
 @app.route('/rate_book', methods=["POST"])
 def book_rating():
-
-    return redirect('/users/<user_id>')
+    # FINISH FUNCTION TO ADD RATING TO DATABASE
+    return render_template("book_details.html")
 
 
 if __name__ == "__main__":
