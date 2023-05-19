@@ -5,34 +5,34 @@ import crud
 import requests
 import os 
 
-API_KEY = os.environ["GOOGLE_KEY"]
+# API_KEY = os.environ["GOOGLE_KEY"]
+# payload = {'q': 'The+lion+the+witch+and+the+wardrobe', 'key': API_KEY}
+# res = requests.get('https://www.googleapis.com/books/v1/volumes?', params=payload)
+# book_data = res.json()
+# book_results = book_data['items']
 
-payload = {'q': 'The+lion+the+witch+and+the+wardrobe', 'key': API_KEY}
-
-res = requests.get('https://www.googleapis.com/books/v1/volumes?', params=payload)
-
-book_data = res.json()
-
-book_results = book_data['items']
-
-for book in book_results:
-    title = book['volumeInfo']['title']
-    author = book['volumeInfo']['authors']
-    description = book['volumeInfo']['description']
-    print(f'Title of book: {title}')
-    print(f'Written by: {author}')
-    print(f'{description}')
 # for book in book_results:
-#     print(book)
-
-# for i in range(book_results):
-#     book_title = book_data['items'][i].get('kind')
-#     author = book_data['items'][i].get('id')
-#     print(f'{book_title}: {author}')
-
-
+#     title = book['volumeInfo']['title']
+#     author = book['volumeInfo']['authors']
+#     description = book['volumeInfo']['description']
+#     print(f'Title of book: {title}')
+#     print(f'Written by: {author}')
+#     print(f'{description}')
 
 
+
+# Helper function to put keyword in params 
+def get_API_data(keyword):
+    """Helper function to put keyword in params """
+    API_KEY = os.environ["GOOGLE_KEY"]
+
+    payload = {'q': {keyword}, 'key': API_KEY}
+    res = requests.get('https://www.googleapis.com/books/v1/volumes?', params=payload)
+
+    book_data = res.json()
+    book_results = book_data['items']
+
+    return book_results
 
 
 from jinja2 import StrictUndefined
@@ -147,7 +147,20 @@ def book_rating():
     # FINISH FUNCTION TO ADD RATING TO DATABASE
     return render_template("book_details.html")
 
-# @app.route()
+@app.route('/search')
+def book_search():
+    """Search for a book"""
+
+    return render_template("search.html")
+
+@app.route('/search/results')
+def book_search_results():
+    """Get's result of book search"""
+    keyword = request.args.get("search_keyword")
+
+    books = get_API_data(keyword)
+
+    return render_template("search_results.html", books=books)
 
 
 

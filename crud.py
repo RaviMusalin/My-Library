@@ -82,6 +82,7 @@ def get_user_by_username(username):
     return User.query.filter(User.user_name == username).first()
 
 
+
 if __name__ == "__main__":
     from server import app
 

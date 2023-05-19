@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Search{% endblock %}
+
+{% block body %}
+<h1>Find a book here!</h1>
+
+
+{% if "user_id" in session %}
+<form method="GET" action="/search/results">
+      <p>Find a book:<input
+        id="search-keyword"
+        type="text"
+        name="search_keyword"
+      >
+      </p>
+      <input type="submit">
+</form>
+
+{% endif %}
+{% endblock %}
