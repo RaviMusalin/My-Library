@@ -7,12 +7,31 @@ import os
 
 API_KEY = os.environ["GOOGLE_KEY"]
 
-payload = {'q': 'flowers', 'key': API_KEY}
+payload = {'q': 'The+lion+the+witch+and+the+wardrobe', 'key': API_KEY}
 
-res = requests.get('https://www.googleapis.com/books/v1/volumes?',
-                   params=payload)
+res = requests.get('https://www.googleapis.com/books/v1/volumes?', params=payload)
 
-print(res.json())
+book_data = res.json()
+
+book_results = book_data['items']
+
+for book in book_results:
+    title = book['volumeInfo']['title']
+    author = book['volumeInfo']['authors']
+    description = book['volumeInfo']['description']
+    print(f'Title of book: {title}')
+    print(f'Written by: {author}')
+    print(f'{description}')
+# for book in book_results:
+#     print(book)
+
+# for i in range(book_results):
+#     book_title = book_data['items'][i].get('kind')
+#     author = book_data['items'][i].get('id')
+#     print(f'{book_title}: {author}')
+
+
+
 
 
 
@@ -127,6 +146,8 @@ def user_library():
 def book_rating():
     # FINISH FUNCTION TO ADD RATING TO DATABASE
     return render_template("book_details.html")
+
+# @app.route()
 
 
 
