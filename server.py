@@ -2,6 +2,19 @@
 from flask import (Flask, render_template, request, flash, session, redirect)
 from model import connect_to_db, db
 import crud
+import requests
+import os 
+
+API_KEY = os.environ["GOOGLE_KEY"]
+
+payload = {'q': 'flowers', 'key': API_KEY}
+
+res = requests.get('https://www.googleapis.com/books/v1/volumes?',
+                   params=payload)
+
+print(res.json())
+
+
 
 from jinja2 import StrictUndefined
 
@@ -114,6 +127,8 @@ def user_library():
 def book_rating():
     # FINISH FUNCTION TO ADD RATING TO DATABASE
     return render_template("book_details.html")
+
+
 
 
 if __name__ == "__main__":
