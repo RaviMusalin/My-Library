@@ -3,7 +3,16 @@
 {% block title %}Search Results{% endblock %}
 
 {% block body %}
-<h1>{{ books }}</h1>
+<h1>Book List: </h1>
 
+<ul>
+    {% for book in books %}
+    <li>
+        <strong>Book Title:</strong> {{book['volumeInfo']['title']}}
+        <strong> Book Author: </strong> {{book['volumeInfo']['authors']}}
+        <strong> Description: </strong>{{book['volumeInfo']['description']}}
+    </li>
+    {% endfor %}
+</ul>
 
 {% endblock %}
