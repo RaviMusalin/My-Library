@@ -11,13 +11,12 @@ def create_user(username, email, password, type_of_user="user"):
     return user
 
 
-def create_book(title, author, genre, isbn=None, book_cover=None):
+def create_book(title, author, isbn=None, book_cover=None):
     """Create and return a new book."""
 
     book = Book(
         title=title,
         author=author,
-        genre=genre,
         isbn=isbn,
         book_cover=book_cover # Book cover from API?
     )
@@ -80,6 +79,11 @@ def get_user_by_username(username):
     """Get user by username"""
     
     return User.query.filter(User.user_name == username).first()
+
+def get_book_by_isbn(isbn):
+    """Get book by isbn"""
+
+    return Book.query.filter(Book.isbn == isbn).first()
 
 
 

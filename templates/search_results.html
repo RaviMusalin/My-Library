@@ -9,10 +9,18 @@
     {% for book in books %}
     <li>
         <strong>Book Title:</strong> {{book['volumeInfo']['title']}}
-        <strong> Book Author: </strong> {{book['volumeInfo']['authors']}}
-        <strong> Description: </strong>{{book['volumeInfo']['description']}}
+        <strong> Book Author:</strong>
+        {{", ".join(book['volumeInfo']['authors'])}}
     </li>
-    {% endfor %}
+    {% if "user_id" in session %}
+    <button onclick="ownedBook(event,
+        '{{book['volumeInfo']['title']}}', 
+        '{{book['volumeInfo']['authors'][0]}}',
+        '{{book['volumeInfo']['industryIdentifiers'][0]['identifier']}}',
+        '{{book['volumeInfo']['imageLinks']['smallThumbnail']}}'
+        )">I own this book</button>
+    {% endif %}
+    {% endfor %} 
 </ul>
-
+<script src="../static/searchResults.js"></script>
 {% endblock %}

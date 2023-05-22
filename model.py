@@ -46,7 +46,6 @@ class Book(db.Model):
     book_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     title = db.Column(db.String)
     author = db.Column(db.Text)
-    genre = db.Column(db.Text)
     isbn = db.Column(db.String)
     book_cover = db.Column(db.String)
 
@@ -55,7 +54,7 @@ class Book(db.Model):
     users = db.relationship("User", secondary="owned_books", back_populates="users_library")
 
     def __repr__(self):
-        return f"<Book book_id={self.book_id} title={self.title} author={self.author} genre={self.genre}>"
+        return f"<Book book_id={self.book_id} title={self.title} author={self.author}>"
 
 
 class Rating(db.Model):

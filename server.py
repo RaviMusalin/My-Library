@@ -5,22 +5,6 @@ import crud
 import requests
 import os 
 
-# API_KEY = os.environ["GOOGLE_KEY"]
-# payload = {'q': 'The+lion+the+witch+and+the+wardrobe', 'key': API_KEY}
-# res = requests.get('https://www.googleapis.com/books/v1/volumes?', params=payload)
-# book_data = res.json()
-# book_results = book_data['items']
-
-# for book in book_results:
-#     title = book['volumeInfo']['title']
-#     author = book['volumeInfo']['authors']
-#     description = book['volumeInfo']['description']
-#     print(f'Title of book: {title}')
-#     print(f'Written by: {author}')
-#     print(f'{description}')
-
-
-
 # Helper function to put keyword in params 
 def get_API_data(keyword):
     """Helper function to put keyword in params """
@@ -71,7 +55,7 @@ def book_details(book_id):
 def get_user_details(user_id):
     """Show individual User details"""
 
-    user = crud.user_details_by_id(user_id)
+    user = crud.get_user_by_id(user_id)
 
     return render_template("user_details.html", user=user)
 
@@ -150,7 +134,7 @@ def book_rating():
 @app.route('/search')
 def book_search():
     """Search for a book"""
-
+    
     return render_template("search.html")
 
 @app.route('/search/results')
@@ -162,6 +146,31 @@ def book_search_results():
 
     return render_template("search_results.html", books=books)
 
+@app.route('/saved_to_own', methods=["POST"])
+def save_book_to_owned():
+    """Get book from API and add to table"""
+
+    title = request.json.get("title")
+    author = request.json.get("author")
+    isbn = request.json.get("isbn")
+    book_cover = request.json.get("book_cover")
+    user_id = session["user_id"]
+    user = crud.get_user_by_id(user_id)
+
+    
+    
+    if not crud.get_book_by_isbn(isbn):
+        new_book = crud.create_book(title, author, isbn, book_cover)
+        db.session.add(new_book)
+        db.session.commit()
+    else:
+        new_book = crud.get_book_by_isbn(isbn)
+
+    user.users_library.append(new_book)
+    db.session.commit()
+    # print(book_cover)
+
+    return "book saved"
 
 
 

@@ -23,15 +23,14 @@ with open('data/books.json') as f:
 # to create fake ratings later
 books_in_db = []
 for book in book_data:
-    title, author, genre = (
+    title, author = (
         book["title"],
-        book["author"],
-        book["genre"],
+        book["author"]
     )
     # dictionary. Then, Get the ISBN and book cover (From API?)
 
     # TODO: create a book here and append it to books_in_db
-    db_book = crud.create_book(title, author, genre)
+    db_book = crud.create_book(title, author)
     books_in_db.append(db_book)
 
 model.db.session.add_all(books_in_db)
