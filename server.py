@@ -143,8 +143,13 @@ def book_search_results():
     keyword = request.args.get("search_keyword")
     
     books = get_API_data(keyword)
-   
-    books_isbn = [book['volumeInfo']['industryIdentifiers'][0]['identifier'] for book in books]
+    
+    books_isbn = []
+    
+    for book in books:
+        if 'industryIdentifiers' in book['volumeInfo']:
+            books_isbn.append(book['volumeInfo']['industryIdentifiers'][0]['identifier'])
+        # books_isbn = [book['volumeInfo']['industryIdentifiers'][0]['identifier'] for book in books]
 
     if "user_id" in session:
         user_id = session["user_id"]

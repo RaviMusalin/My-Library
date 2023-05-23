@@ -11,13 +11,20 @@
         <strong>Book Title:</strong> {{book['volumeInfo']['title']}}
         <strong> Book Author:</strong>
         {% if 'authors' in book['volumeInfo']%}
+
         {{", ".join(book['volumeInfo']['authors'])}}
+
         {% endif %}
         <strong> ISBN: </strong>
+        {% if 'industryIdentifiers' in book['volumeInfo']%}
+
         {{ book['volumeInfo']['industryIdentifiers'][0]['identifier'] }}
+
+        {% endif %}
     </li>
     {% if "user_id" in session %}
-    <button {% if book['volumeInfo']['industryIdentifiers'][0]['identifier'] in filtered_books %} disabled {% endif %} onclick="ownedBook(event,
+
+    <button  {% if 'industryIdentifiers' in book['volumeInfo']%}{% if book['volumeInfo']['industryIdentifiers'][0]['identifier'] in filtered_books %} disabled {% endif %} {%endif%} onclick="ownedBook(event,
         '{{book['volumeInfo']['title']}}',
         
         {% if 'authors' in book['volumeInfo']%}
@@ -26,8 +33,12 @@
         
         {% endif %}
         
+        {% if 'industryIdentifiers' in book['volumeInfo']%}
+
         '{{book['volumeInfo']['industryIdentifiers'][0]['identifier']}}',
         
+        {% endif %}
+
         {% if 'imageLinks' in book['volumeInfo']%}
         
         '{{book['volumeInfo']['imageLinks']['smallThumbnail']}}'
