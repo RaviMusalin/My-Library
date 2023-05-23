@@ -10,16 +10,30 @@
     <li>
         <strong>Book Title:</strong> {{book['volumeInfo']['title']}}
         <strong> Book Author:</strong>
+        {% if 'authors' in book['volumeInfo']%}
         {{", ".join(book['volumeInfo']['authors'])}}
+        {% endif %}
         <strong> ISBN: </strong>
         {{ book['volumeInfo']['industryIdentifiers'][0]['identifier'] }}
     </li>
     {% if "user_id" in session %}
     <button {% if book['volumeInfo']['industryIdentifiers'][0]['identifier'] in filtered_books %} disabled {% endif %} onclick="ownedBook(event,
-        '{{book['volumeInfo']['title']}}', 
+        '{{book['volumeInfo']['title']}}',
+        
+        {% if 'authors' in book['volumeInfo']%}
+        
         '{{book['volumeInfo']['authors'][0]}}',
+        
+        {% endif %}
+        
         '{{book['volumeInfo']['industryIdentifiers'][0]['identifier']}}',
+        
+        {% if 'imageLinks' in book['volumeInfo']%}
+        
         '{{book['volumeInfo']['imageLinks']['smallThumbnail']}}'
+        
+        {% endif %}
+        
         )">I own this book</button>
     {% endif %}
     {% endfor %} 
