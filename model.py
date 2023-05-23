@@ -54,7 +54,7 @@ class Book(db.Model):
     users = db.relationship("User", secondary="owned_books", back_populates="users_library")
 
     def __repr__(self):
-        return f"<Book book_id={self.book_id} title={self.title} author={self.author}>"
+        return f"<Book book_isbn={self.isbn} book_id={self.book_id} title={self.title} author={self.author}>"
 
 
 class Rating(db.Model):

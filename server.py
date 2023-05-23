@@ -141,10 +141,22 @@ def book_search():
 def book_search_results():
     """Get's result of book search"""
     keyword = request.args.get("search_keyword")
-
+    
     books = get_API_data(keyword)
+   
+    books_isbn = [book['volumeInfo']['industryIdentifiers'][0]['identifier'] for book in books]
 
-    return render_template("search_results.html", books=books)
+    if "user_id" in session:
+        user_id = session["user_id"]
+        user = crud.get_user_by_id(user_id)
+        user_library = crud.get_users_library(user_id)
+    
+    user_isbns = [x.isbn for x in user_library]   
+
+    filtered_books = [x for x in user_isbns if x in books_isbn] 
+# https://stackoverflow.com/questions/34288403/how-to-keep-elements-of-a-list-based-on-another-list
+# https://stackoverflow.com/questions/28644951/django-how-to-apply-conditional-attribute-to-html-element-in-template
+    return render_template("search_results.html", books=books, user=user, user_isbns=user_isbns, books_isbn=books_isbn, filtered_books=filtered_books)
 
 @app.route('/saved_to_own', methods=["POST"])
 def save_book_to_owned():

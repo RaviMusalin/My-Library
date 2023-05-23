@@ -11,9 +11,11 @@
         <strong>Book Title:</strong> {{book['volumeInfo']['title']}}
         <strong> Book Author:</strong>
         {{", ".join(book['volumeInfo']['authors'])}}
+        <strong> ISBN: </strong>
+        {{ book['volumeInfo']['industryIdentifiers'][0]['identifier'] }}
     </li>
     {% if "user_id" in session %}
-    <button onclick="ownedBook(event,
+    <button {% if book['volumeInfo']['industryIdentifiers'][0]['identifier'] in filtered_books %} disabled {% endif %} onclick="ownedBook(event,
         '{{book['volumeInfo']['title']}}', 
         '{{book['volumeInfo']['authors'][0]}}',
         '{{book['volumeInfo']['industryIdentifiers'][0]['identifier']}}',
@@ -22,5 +24,7 @@
     {% endif %}
     {% endfor %} 
 </ul>
+
+
 <script src="../static/searchResults.js"></script>
 {% endblock %}
