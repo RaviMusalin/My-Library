@@ -21,6 +21,13 @@
         {{ book['volumeInfo']['industryIdentifiers'][0]['identifier'] }}
 
         {% endif %}
+
+        {% if 'imageLinks' in book['volumeInfo'] %}
+
+        <img src="{{ book['volumeInfo']['imageLinks']['smallThumbnail'] }}">
+
+        {% endif %}
+
     </li>
     {% if "user_id" in session %}
 
