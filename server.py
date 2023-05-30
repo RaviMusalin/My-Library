@@ -47,9 +47,19 @@ def book_details(book_id):
     """Show details of book"""
 
     book = crud.book_details_by_id(book_id)
+    ratings = crud.get_book_ratings(book_id)
 
-    return render_template("book_details.html", book=book)
+    return render_template("book_details.html", book=book, ratings=ratings)
 
+
+# FIX THIS ROUTE
+# @app.route('/books/<book_id>')
+# def book_ratings(book_id):
+#     # Get all the ratings 
+#     book = crud.book_details_by_id(book_id)
+#     ratings = crud.get_book_ratings(book_id)
+
+#     return render_template("book_details.html", book=book, ratings=ratings)
 
 @app.route('/users/<user_id>')
 def get_user_details(user_id):
@@ -185,7 +195,6 @@ def save_book_to_owned():
 
     user.users_library.append(new_book)
     db.session.commit()
-    # print(book_cover)
 
     return "book saved"
 

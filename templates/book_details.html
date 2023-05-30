@@ -5,9 +5,18 @@
 <h1>{{ book.title }}</h1>
 
 <p>
-  {{ book.title }}
-  {{ book.author}}
+    Title: {{ book.title }}
 </p>
+<p>
+    Author: {{ book.author}}
+</p>
+
+{% for rating in ratings %}
+<p>
+    {{ rating.body }}
+</p>
+{% endfor %}
+
 {% if "user_id" in session %}
 <form action="/rate_book" method="POST">
    <h1>Book Review:</h1>

@@ -48,12 +48,12 @@ def create_rating(user, book, score, body):
 
     return rating
 
-def create_book_owned(user, book):
-    """Create a book owned for a specific user"""
-    # What to put in a function to create books owned for a specific user?
-    owned_book = Owned(user=user, books=book)
+# def create_book_owned(user, book):
+#     """Create a book owned for a specific user"""
+#     # What to put in a function to create books owned for a specific user?
+#     owned_book = Owned(user=user, books=book)
 
-    return owned_book
+#     return owned_book
 
 def book_details_by_id(book_id):
     """Gets a book by it's book id"""
@@ -84,6 +84,11 @@ def get_book_by_isbn(isbn):
     """Get book by isbn"""
 
     return Book.query.filter(Book.isbn == isbn).first()
+
+# Get the ratings for a book 
+def get_book_ratings(book_id):
+    
+    return Rating.query.filter(Rating.book_id == book_id)
 
 
 
