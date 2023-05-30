@@ -47,9 +47,9 @@ def book_details(book_id):
     """Show details of book"""
 
     book = crud.book_details_by_id(book_id)
-    ratings = crud.get_book_ratings(book_id)
+    # ratings = crud.get_book_ratings(book_id)
 
-    return render_template("book_details.html", book=book, ratings=ratings)
+    return render_template("book_details.html", book=book)
 
 
 # FIX THIS ROUTE
@@ -139,7 +139,13 @@ def user_library():
 @app.route('/rate_book', methods=["POST"])
 def book_rating():
     # FINISH FUNCTION TO ADD RATING TO DATABASE
-    return render_template("book_details.html")
+    score = request.form.get("score")
+    body = request.form.get("body")
+    user_id = session["user_id"]
+    user = crud.get_user_by_id(user_id)
+    book = request.form.get("book_id")
+
+    return "Saved Review!"
 
 @app.route('/search')
 def book_search():

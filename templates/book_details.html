@@ -11,11 +11,6 @@
     Author: {{ book.author}}
 </p>
 
-{% for rating in ratings %}
-<p>
-    {{ rating.body }}
-</p>
-{% endfor %}
 
 {% if "user_id" in session %}
 <form action="/rate_book" method="POST">
@@ -27,12 +22,25 @@
     <p>
       Body <input type="text" name="review">
     </p>
-
+            <input name="book_id" value="{{ book.book_id }}">
     <p>
       <input type="submit">
     </p>
 </form>
 {% endif %}
+
+<div>
+    <h2>Book Reviews: </h2>
+    {% for rating in book.ratings %} 
+    <p>
+    {{ rating.score }}
+    </p>
+    <p>
+    {{ rating.body }}
+    </p>
+
+    {% endfor%}
+</div>
 
 
 {% endblock %}
