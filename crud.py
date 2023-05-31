@@ -90,6 +90,12 @@ def get_book_ratings(book_id):
     
     return Rating.query.filter(Rating.book_id == book_id)
 
+def rating_average(score):
+    """Average rating score"""
+    sum_score = sum(score) / len(score)
+
+    return sum_score
+
 
 
 if __name__ == "__main__":

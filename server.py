@@ -145,6 +145,13 @@ def book_rating():
     user = crud.get_user_by_id(user_id)
     book = request.form.get("book_id")
 
+    
+    new_rating = crud.create_rating(user, book, score, body)
+    db.session.add(new_rating)
+    db.session.commit()
+
+    book.ratings.append(new_rating)
+    db.session.commit()
     return "Saved Review!"
 
 @app.route('/search')
