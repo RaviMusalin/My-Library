@@ -140,10 +140,11 @@ def user_library():
 def book_rating():
     # FINISH FUNCTION TO ADD RATING TO DATABASE
     score = request.form.get("score")
-    body = request.form.get("body")
+    body = request.form.get("review")
     user_id = session["user_id"]
     user = crud.get_user_by_id(user_id)
-    book = request.form.get("book_id")
+    book_id = request.form.get("book_id")
+    book = crud.book_details_by_id(book_id)
 
     
     new_rating = crud.create_rating(user, book, score, body)

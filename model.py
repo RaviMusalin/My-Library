@@ -59,6 +59,8 @@ class Book(db.Model):
 
 class Rating(db.Model):
     """A book rating."""
+    # def __init__(self, ):
+    # Possibe solution - primary key?
 
     __tablename__ = "ratings"
 
