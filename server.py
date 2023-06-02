@@ -223,6 +223,10 @@ def save_book_to_owned():
 
     return "book saved"
 
+@app.route('/return')
+def go_back():
+    return redirect('/')
+
 
 
 if __name__ == "__main__":

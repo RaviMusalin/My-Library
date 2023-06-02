@@ -2,6 +2,8 @@
 
 {% block title %}Details{% endblock %}
 {% block body %}
+<a href="/"><button>Go back to homepage</button></a>
+
 <h1>{{ book.title }}</h1> 
 <img src=" {{ book.book_cover }} " />
 <h2>Average rating: {{ avg_ratings }}</h2>
