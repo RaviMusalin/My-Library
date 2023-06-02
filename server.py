@@ -120,11 +120,13 @@ def user_login():
         
         return redirect('/user_details')
 
+
 @app.route('/logout')
 def logout():
     session.pop('user_id', None)  
     
     return render_template('homepage.html')
+
 
 @app.route('/user_details')
 def user_library():
@@ -141,6 +143,7 @@ def user_library():
     else:
         flash("Please log in") 
         return redirect('/')
+
 
 @app.route('/rate_book', methods=["POST"])
 def book_rating():
@@ -159,7 +162,9 @@ def book_rating():
 
     book.ratings.append(new_rating)
     db.session.commit()
-    return render_template('book_details.html', book=book)
+    avg_ratings = crud.average_rating(book_id)
+
+    return render_template('book_details.html', book=book, avg_ratings=avg_ratings)
 
 
 @app.route('/search')
@@ -167,6 +172,7 @@ def book_search():
     """Search for a book"""
     
     return render_template("search.html")
+
 
 @app.route('/search/results')
 def book_search_results():
@@ -205,8 +211,6 @@ def save_book_to_owned():
     user_id = session["user_id"]
     user = crud.get_user_by_id(user_id)
 
-    
-    
     if not crud.get_book_by_isbn(isbn):
         new_book = crud.create_book(title, author, isbn, book_cover)
         db.session.add(new_book)
