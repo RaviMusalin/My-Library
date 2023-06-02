@@ -153,7 +153,7 @@ def book_rating():
 
     book.ratings.append(new_rating)
     db.session.commit()
-    return "Saved Review!"
+    return render_template('book_details.html', book=book)
 
 @app.route('/search')
 def book_search():
