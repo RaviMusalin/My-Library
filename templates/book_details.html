@@ -3,7 +3,7 @@
 {% block title %}Details{% endblock %}
 {% block body %}
 <h1>{{ book.title }}</h1>
-
+<h2>{{ avg_ratings }}</h2>
 <p>
     Title: {{ book.title }}
 </p>
@@ -31,8 +31,9 @@
 
 <div>
     <h2>Book Reviews: </h2>
-    {% for rating in book.ratings %} 
+    {% for rating in book.ratings %}
     <p>
+       
     {{ rating.score }}
     </p>
     <p>

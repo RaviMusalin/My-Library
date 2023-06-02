@@ -48,13 +48,6 @@ def create_rating(user, book, score, body):
 
     return rating
 
-# def create_book_owned(user, book):
-#     """Create a book owned for a specific user"""
-#     # What to put in a function to create books owned for a specific user?
-#     owned_book = Owned(user=user, books=book)
-
-#     return owned_book
-
 def book_details_by_id(book_id):
     """Gets a book by it's book id"""
 
@@ -85,16 +78,31 @@ def get_book_by_isbn(isbn):
 
     return Book.query.filter(Book.isbn == isbn).first()
 
-# Get the ratings for a book 
-def get_book_ratings(book_id):
+# Get the number of ratings for a book 
+def get_total_ratings(book_id):
+    """Get how many ratings there are for a book"""
     
-    return Rating.query.filter(Rating.book_id == book_id)
+    return Rating.query.filter(Rating.book_id == book_id).count()
 
-def rating_average(score):
-    """Average rating score"""
-    sum_score = sum(score) / len(score)
+def ratings_by_id(book_id):
 
-    return sum_score
+    return Rating.query.filter(Rating.book_id == book_id).all()
+
+def average_rating(book_id):
+    """Calculates the average rating score"""
+    num_total_ratings = get_total_ratings(book_id)
+    if num_total_ratings == 0:
+        return "No ratings yet"
+
+    rating_sum = 0
+    all_ratings = ratings_by_id(book_id)
+    
+    for rating in all_ratings:
+        rating_sum += rating.score
+    
+    avg_rating = rating_sum / num_total_ratings
+
+    return avg_rating
 
 
 

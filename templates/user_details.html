@@ -25,5 +25,8 @@
     <h2> <a href="/search">Seach for a book</a></h2>
 </div>
 
+{% if session.user_id %}
+            <a href="/logout">Logout</a>
+{% endif %}
 
 {% endblock %}

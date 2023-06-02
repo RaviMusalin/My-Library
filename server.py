@@ -47,9 +47,9 @@ def book_details(book_id):
     """Show details of book"""
 
     book = crud.book_details_by_id(book_id)
-    # ratings = crud.get_book_ratings(book_id)
-
-    return render_template("book_details.html", book=book)
+    avg_ratings = crud.average_rating(book_id)
+    print(avg_ratings)
+    return render_template("book_details.html", book=book, avg_ratings=avg_ratings)
 
 
 # FIX THIS ROUTE
@@ -120,6 +120,12 @@ def user_login():
         
         return redirect('/user_details')
 
+@app.route('/logout')
+def logout():
+    session.pop('user_id', None)  
+    
+    return render_template('homepage.html')
+
 @app.route('/user_details')
 def user_library():
 
@@ -154,6 +160,7 @@ def book_rating():
     book.ratings.append(new_rating)
     db.session.commit()
     return render_template('book_details.html', book=book)
+
 
 @app.route('/search')
 def book_search():
