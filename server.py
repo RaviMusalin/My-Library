@@ -15,7 +15,7 @@ def get_API_data(keyword):
 
     book_data = res.json()
     book_results = book_data['items']
-
+    print("Hello", len(book_results))
     return book_results
 
 

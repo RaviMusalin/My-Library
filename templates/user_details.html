@@ -3,7 +3,6 @@
 {% block title %}{{ user.user_name }} - Details{% endblock %}
 
 {% block body %}
-<a href="/"><button>Go back to homepage</button></a>
 
 <h1>{{ user.user_name }}</h1>
 
@@ -27,9 +26,5 @@
 <div>
     <h2> <a href="/search">Seach for a book</a></h2>
 </div>
-
-{% if session.user_id %}
-            <a href="/logout">Logout</a>
-{% endif %}
 
 {% endblock %}
