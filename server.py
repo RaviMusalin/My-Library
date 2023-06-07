@@ -29,6 +29,8 @@ app.jinja_env.undefined = StrictUndefined
 @app.route('/')
 def homepage():
     """View homepage"""
+    if "user_id" in session:
+        return redirect('/users/'+ session["user_id"])
 
     return render_template('homepage.html')
 
@@ -96,7 +98,7 @@ def register_user():
         db.session.commit()
         flash("Account created! Please log in.")
 
-    return redirect("/users")
+    return redirect("/")
 
 #  REFER BACK TO API LECTURE
 

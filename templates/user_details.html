@@ -3,22 +3,21 @@
 {% block title %}{{ user.user_name }} - Details{% endblock %}
 
 {% block body %}
+
 <div class="details">
-<h1>{{ user.user_name }}</h1>
-
-<p>
-  {{ user.user_name}}
-</p>
+<h1 class="username">{{ user.user_name }}</h1>
 
 
 
-<h2>Owned Books:</h2>
+
+
+<h2 class="owned-book">Owned Books:</h2>
 <!-- Loop through owned books -->
-<ul>
+<ul id="book_library">
   {% for book in user.users_library %}
-  <li>
-    <a href="/books/{{ book.book_id }}">{{ book.title }}</a>
-    <img src= "{{ book.book_cover }}"" />
+  <li id="each-book">
+    <a id="book-title" href="/books/{{ book.book_id }}">{{ book.title }}</a>
+    <img id="book-image" src= "{{ book.book_cover }}"" />
 </li>
   {% endfor %}
 </ul>

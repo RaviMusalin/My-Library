@@ -4,44 +4,51 @@
 {% block body %}
 
 
-<div class="user-form">
-   <div>
-  <h2>Create an Account</h2>
-  <form action="/users" method="POST">
-    <p>
-        Username <input type="text" name="username">
-    </p>
+<div id="hompage-wrapper">
+  <div class="user-form">
+    <div>
+      <h2 class="form-header" id="create">Create an Account</h2>
+      <form action="/users" method="POST">
 
-    <p>
-      Email <input type="text" name="email">
-    </p>
+        <p>
+          <title> Email </title>
+          Email
+          <input type="text" name="email">
+        </p>
+        <p>
+          <title> Username </title>
+          Username
+          <input type="text" name="username">
+        </p>
+        <p>
+          <title> Password </title>
+          Password
+          <input type="password" name="password">
+        </p>
 
-    <p>
-      Password <input type="password" name="password">
-    </p>
+        <p>
+          <input type="submit">
+        </p>
+      </form>
+    </div>
 
-    <p>
-      <input type="submit">
-    </p>
-  </form>
-</div> 
+    <div>
+      <h2 class="form-header" id="login">Log In</h2>
+      <form action="/login" method="POST">
+        <p>
+          Username <input type="text" name="username">
+        </p>
 
-<div>
-  <h2>Log In</h2>
-  <form action="/login" method="POST">
-    <p>
-      Username <input type="text" name="username">
-    </p>
+        <p>
+          Password <input type="password" name="password">
+        </p>
 
-    <p>
-      Password <input type="password" name="password">
-    </p>
+        <p>
+          <input type="submit">
+        </p>
+      </form>
+    </div>
+  </div>
 
-    <p>
-      <input type="submit">
-    </p>
-  </form>
-</div>
-</div>
 
-{% endblock %}
+  {% endblock %}
