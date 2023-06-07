@@ -3,7 +3,7 @@
 {% block title %}{{ user.user_name }} - Details{% endblock %}
 
 {% block body %}
-
+<div class="details">
 <h1>{{ user.user_name }}</h1>
 
 <p>
@@ -23,8 +23,8 @@
   {% endfor %}
 </ul>
 
-<div>
+<div class="search">
     <h2> <a href="/search">Seach for a book</a></h2>
 </div>
-
+</div>
 {% endblock %}

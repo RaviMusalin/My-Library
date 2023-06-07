@@ -2,7 +2,10 @@
 {% block title %}My Library Home Page{% endblock %}
 
 {% block body %}
-  <h1>Welcome!</h1>
+
+
+<div class="user-form">
+   <div>
   <h2>Create an Account</h2>
   <form action="/users" method="POST">
     <p>
@@ -21,7 +24,9 @@
       <input type="submit">
     </p>
   </form>
+</div> 
 
+<div>
   <h2>Log In</h2>
   <form action="/login" method="POST">
     <p>
@@ -36,6 +41,7 @@
       <input type="submit">
     </p>
   </form>
-  
+</div>
+</div>
 
 {% endblock %}

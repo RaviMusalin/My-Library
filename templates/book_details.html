@@ -2,48 +2,47 @@
 
 {% block title %}Details{% endblock %}
 {% block body %}
-<a href="/user_details"><button>Go to profile</button></a>
-
-<h1>{{ book.title }}</h1> 
-<img src=" {{ book.book_cover }} " />
-<h2>Average rating: {{ avg_ratings }} / 5</h2>
-<p>
-    Title: {{ book.title }}
-</p>
-<p>
-    Author: {{ book.author}}
-</p>
-
-
-{% if "user_id" in session %}
-<form action="/rate_book" method="POST">
-   <h1>Book Review:</h1>
+<div class="details">
+    <h1>{{ book.title }}</h1>
+    <img src=" {{ book.book_cover }} " />
+    <h2>Average rating: {{ avg_ratings }} / 5</h2>
     <p>
-      Rating: <input type="number" name="score" min="1" max="5">
+        Title: {{ book.title }}
     </p>
     <p>
-      Review: <input type="text" name="review">
-    </p>
-            <input style="display: none;" name="book_id" value="{{ book.book_id }}">
-    <p>
-      <input type="submit">
-    </p>
-</form>
-{% endif %}
-
-<div>
-    <h2>Book Reviews: </h2>
-    {% for rating in book.ratings %}
-    <p>
-       
-    {{ rating.score }}
-    </p>
-    <p>
-    {{ rating.body }}
+        Author: {{ book.author}}
     </p>
 
-    {% endfor%}
+
+    {% if "user_id" in session %}
+    <form action="/rate_book" method="POST">
+        <h1>Book Review:</h1>
+        <p>
+            Rating: <input type="number" name="score" min="1" max="5">
+        </p>
+        <p>
+            Review: <input type="text" name="review">
+        </p>
+        <input style="display: none;" name="book_id" value="{{ book.book_id }}">
+        <p>
+            <input type="submit">
+        </p>
+    </form>
+    {% endif %}
+
+    <div>
+        <h2>Book Reviews: </h2>
+        {% for rating in book.ratings %}
+        <p>
+
+            {{ rating.score }}
+        </p>
+        <p>
+            {{ rating.body }}
+        </p>
+
+        {% endfor%}
+    </div>
+
 </div>
-
-
 {% endblock %}
