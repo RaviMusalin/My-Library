@@ -30,7 +30,7 @@ app.jinja_env.undefined = StrictUndefined
 def homepage():
     """View homepage"""
     if "user_id" in session:
-        return redirect('/users/'+ session["user_id"])
+        return redirect('/users/'+ str(session["user_id"]))
 
     return render_template('homepage.html')
 

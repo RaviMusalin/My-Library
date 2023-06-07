@@ -8,11 +8,12 @@
 
 
 {% if "user_id" in session %}
-<form method="GET" action="/search/results">
-      <p>Find a book:<input
+<form method="GET" action="/search/results" id="search-form">
+      <p>Search for a book: <input
         id="search-keyword"
         type="text"
         name="search_keyword"
+        placeholder="Enter a title or author"
       >
       </p>
       <input type="submit">

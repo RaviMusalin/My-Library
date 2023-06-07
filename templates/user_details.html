@@ -5,25 +5,25 @@
 {% block body %}
 
 <div class="details">
-<h1 class="username">{{ user.user_name }}</h1>
+    <h1 class="username">{{ user.user_name }}</h1>
 
 
 
 
 
-<h2 class="owned-book">Owned Books:</h2>
-<!-- Loop through owned books -->
-<ul id="book_library">
-  {% for book in user.users_library %}
-  <li id="each-book">
-    <a id="book-title" href="/books/{{ book.book_id }}">{{ book.title }}</a>
-    <img id="book-image" src= "{{ book.book_cover }}"" />
+    <h2 class="owned-book">Owned Books:</h2>
+    <!-- Loop through owned books -->
+    <ul id="book_library">
+        {% for book in user.users_library %}
+        <li id="each-book">
+            <a id="book-title" href="/books/{{ book.book_id }}">{{ book.title }}</a>
+            <img id="book-image" src="{{ book.book_cover }}"" />
 </li>
   {% endfor %}
 </ul>
 
-<div class="search">
-    <h2> <a href="/search">Seach for a book</a></h2>
+<div class=" search">
+            <h2> <a href="/search">Seach for a book</a></h2>
 </div>
 </div>
 {% endblock %}

@@ -4,13 +4,12 @@
 
 {% block body %}
 <div class="details">
-<h1>Book List: </h1>
 
-<ul>
+<ul class="search-results">
     {% for book in books %}
     <li>
-        <strong>Book Title:</strong> {{book['volumeInfo']['title']}}
-        <strong> Book Author:</strong>
+        <strong>Book Title: </strong> {{book['volumeInfo']['title']}}
+        <strong>Book Author: </strong>
         {% if 'authors' in book['volumeInfo']%}
 
         {{", ".join(book['volumeInfo']['authors'])}}
@@ -32,7 +31,7 @@
     </li>
     {% if "user_id" in session %}
 
-    <button  {% if 'industryIdentifiers' in book['volumeInfo']%}{% if book['volumeInfo']['industryIdentifiers'][0]['identifier'] in filtered_books %} disabled {% endif %} {%endif%} onclick="ownedBook(event,
+    <button class="own-btn" {% if 'industryIdentifiers' in book['volumeInfo']%}{% if book['volumeInfo']['industryIdentifiers'][0]['identifier'] in filtered_books %} disabled {% endif %} {%endif%} onclick="ownedBook(event,
         '{{book['volumeInfo']['title']}}',
         
         {% if 'authors' in book['volumeInfo']%}
@@ -55,6 +54,7 @@
         
         )">I own this book</button>
     {% endif %}
+    </br>
     {% endfor %} 
 </ul>
 
