@@ -11,6 +11,7 @@
         <a id="book-title" href="/books/{{ book.book_id }}">
             {{ book.title }}
         </a>
+        <p id="book-title">By: {{ book.author }}</p>
         <img id="book-image" src="{{book.book_cover}}"
     </li>
     {% endfor %}

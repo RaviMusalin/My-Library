@@ -15,7 +15,8 @@ body {
     right: 0px;
     bottom: 0px;
     left: 0px;
-    
+    font-family: monospace;
+
 }
 
 .details {
@@ -26,10 +27,12 @@ body {
     background-color: white;
     color: #E6D977;
     padding-right: 25px;
+    position: absolute;
+    left: 0;
+    right: 0;
 }
 
 p {
-    font-family: 'Times New Roman', Times, serif;
     color: black;
 }
 
