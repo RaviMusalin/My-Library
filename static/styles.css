@@ -6,6 +6,8 @@
     color: black;
 }
 
+
+
 body {
     /* background: linear-gradient(-70deg, #fa7c30 30%, rgba(0, 0, 0, 0) 30%), url("library_picture.jpeg"); */
     background-image: url("library_picture.jpeg");
@@ -18,6 +20,9 @@ body {
     left: 0px;
     font-family: monospace;
     background-color: #613613;
+    background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .details {
