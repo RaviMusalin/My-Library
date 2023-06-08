@@ -2,52 +2,61 @@
 
 {% block title %}Details{% endblock %}
 {% block body %}
-<div class="details">
-    
-        <h1>{{ book.title }}</h1>
-        <div class="details-ratings">
+<div class="details" id="details2">
+
+    <h1>{{ book.title }}</h1>
+    <div class="details-ratings">
         <div id="rating-cover">
-        <img src=" {{ book.book_cover }} " />
+            <img src=" {{ book.book_cover }} " />
         </div>
         <div class="book-rating-details">
-        <p>Average rating: {{ avg_ratings }} {% if avg_ratings is number %} / 5 {%endif%} </p>
-        <p>
-            Title: {{ book.title }}
-        </p>
-        <p>
-            Author: {{ book.author}}
-        </p>
+            <p class="review-contents">
+                Title: {{ book.title }}
+            </p>
+            <p class="review-contents">
+                Author: {{ book.author}}
+            </p>
+            <p class="review-contents">
+                Average rating: {{ avg_ratings }} {% if avg_ratings is number %} / 5 {%endif%}
+            </p>
         </div>
     </div>
+
     {% if "user_id" in session %}
     <form action="/rate_book" method="POST">
-        <h1>Book Review</h1>
-        <p>
-            Rating <input type="number" name="score" min="1" max="5">
-        </p>
-        <p>
-            Write a review <input type="text" name="review" id="review-field"></input>
-        </p>
-        <input style="display: none;" name="book_id" value="{{ book.book_id }}">
-        <p>
-            <input type="submit">
-        </p>
+
+        <div class="review-form">
+            <h1 id="review-title">Review this book</h1>
+            <p class="review-contents">
+                Rating: <input type="number" name="score" min="1" max="5" class="review-css">
+            </p>
+            <p class="review-contents">
+                Write a review: <input type="text" placeholder="What did you think?" name="review" id="review-field" class="review-css"></input>
+            </p>
+            <input style="display: none;" name="book_id" value="{{ book.book_id }}">
+            <p>
+                <input type="submit">
+            </p>
+
     </form>
-    {% endif %}
+</div>
+{% endif %}
 
-    <div>
-        <h2>Book Reviews</h2>
-        {% for rating in book.ratings %}
-        <p>
+<div>
 
-            {{ rating.score }}
+    <h2>Book Reviews</h2>
+    {% for rating in book.ratings %}
+    <div class="divider">
+        <br>
+        <p class="review-contents">
+            Rating: {{ rating.score }}
         </p>
-        <p>
-            {{ rating.body }}
+        <p class="review-contents">
+            Review: {{ rating.body }}
         </p>
-
-        {% endfor%}
     </div>
+    {% endfor%}
+</div>
 
 </div>
 {% endblock %}

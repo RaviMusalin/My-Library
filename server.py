@@ -119,7 +119,7 @@ def user_login():
             
     else:# Log in user by storing the user's username in session
         session["user_id"] = user.user_id
-        flash(f"Welcome back, {user.user_name}!")    
+        # flash(f"Welcome back, {user.user_name}!")    
         
         return redirect('/user_details')
 
