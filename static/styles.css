@@ -133,3 +133,8 @@ p {
 #search-book-details {
     text-align: left;
 }
+
+#search-field {
+    margin: 10px;
+    margin-bottom: 15px;
+}
