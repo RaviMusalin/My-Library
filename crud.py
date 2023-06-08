@@ -100,7 +100,7 @@ def average_rating(book_id):
     for rating in all_ratings:
         rating_sum += rating.score
     
-    avg_rating = rating_sum / num_total_ratings
+    avg_rating = round(rating_sum / num_total_ratings, 2)
 
     return avg_rating
 

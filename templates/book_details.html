@@ -3,17 +3,22 @@
 {% block title %}Details{% endblock %}
 {% block body %}
 <div class="details">
-    <h1>{{ book.title }}</h1>
-    <img src=" {{ book.book_cover }} " />
-    <h2>Average rating: {{ avg_ratings }} / 5</h2>
-    <p>
-        Title: {{ book.title }}
-    </p>
-    <p>
-        Author: {{ book.author}}
-    </p>
-
-
+    
+        <h1>{{ book.title }}</h1>
+        <div class="details-ratings">
+        <div id="rating-cover">
+        <img src=" {{ book.book_cover }} " />
+        </div>
+        <div class="book-rating-details">
+        <p>Average rating: {{ avg_ratings }} {% if avg_ratings is number %} / 5 {%endif%} </p>
+        <p>
+            Title: {{ book.title }}
+        </p>
+        <p>
+            Author: {{ book.author}}
+        </p>
+        </div>
+    </div>
     {% if "user_id" in session %}
     <form action="/rate_book" method="POST">
         <h1>Book Review</h1>

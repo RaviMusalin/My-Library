@@ -40,7 +40,7 @@ p {
     background-color: white;
     opacity: 0.75;
     padding-bottom: 20px;
-    margin-left: 20%; 
+    margin-left: 20%;
     margin-right: 20%;
     border-radius: 2%;
 }
@@ -69,23 +69,40 @@ p {
     padding: 10px;
     margin: 10px;
 }
+
 .search-results {
     list-style-type: none;
 }
-.book-info{
+
+.book-info {
     display: flex;
     justify-content: space-between;
 }
+
 .own-btn {
     margin: 5px;
 }
 
 #review-field {
-    width: 300px; /* Adjust the width as needed */
-    height: 50px; /* Adjust the height as needed */
+    width: 300px;
+    /* Adjust the width as needed */
+    height: 50px;
+    /* Adjust the height as needed */
 }
 
-/* .book-cover {
-        width: 100%; 
+#rating-cover {
+    top: 0;
+    right: 0;
+    position: absolute;
+}
 
+.details-ratings {
+    position: relative;
+}
+
+/* .book-rating-details {
+    top: 0;
+    left: 0;
+    position: absolute;
+    margin-bottom: 10px;
 } */
