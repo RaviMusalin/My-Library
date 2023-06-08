@@ -5,30 +5,41 @@
 {% block body %}
 <div class="details">
 
-<ul class="search-results">
+<div class="search-results">
     {% for book in books %}
-    <li>
-        <strong>Book Title: </strong> {{book['volumeInfo']['title']}}
-        <strong>Book Author: </strong>
-        {% if 'authors' in book['volumeInfo']%}
+    <div class="book-info">
+        <div class="book-details">
+            <div>
+                <strong>Book Title: </strong> 
+                <p>{{book['volumeInfo']['title']}}</p>
+            </div>
 
-        {{", ".join(book['volumeInfo']['authors'])}}
+            <div>
+                <strong>Book Author: </strong>
+                {% if 'authors' in book['volumeInfo']%}
 
-        {% endif %}
-        <strong> ISBN: </strong>
-        {% if 'industryIdentifiers' in book['volumeInfo']%}
+                <p>{{", ".join(book['volumeInfo']['authors'])}}</p>
 
-        {{ book['volumeInfo']['industryIdentifiers'][0]['identifier'] }}
+                {% endif %}
+            </div>
+            <div>
+                <strong> ISBN: </strong>
+                {% if 'industryIdentifiers' in book['volumeInfo']%}
 
-        {% endif %}
+                <p>{{ book['volumeInfo']['industryIdentifiers'][0]['identifier'] }}</p>
 
-        {% if 'imageLinks' in book['volumeInfo'] %}
+                {% endif %}
+            </div>
+         </div>
 
-        <img src="{{ book['volumeInfo']['imageLinks']['smallThumbnail'] }}">
+         <div class="book-cover">
+            {% if 'imageLinks' in book['volumeInfo'] %}
 
-        {% endif %}
+            <img src="{{ book['volumeInfo']['imageLinks']['smallThumbnail'] }}">
 
-    </li>
+            {% endif %}
+        </div>
+    </div>    
     {% if "user_id" in session %}
 
     <button class="own-btn" {% if 'industryIdentifiers' in book['volumeInfo']%}{% if book['volumeInfo']['industryIdentifiers'][0]['identifier'] in filtered_books %} disabled {% endif %} {%endif%} onclick="ownedBook(event,
@@ -56,12 +67,14 @@
     {% endif %}
     </br>
     {% endfor %} 
-</ul>
+</div>
 
 
 <script src="../static/searchResults.js"></script>
+
+</div>
+
 <div class="search">
     <button> <a href="/search">Seach Again</a></button>
-</div>
 </div>
 {% endblock %}

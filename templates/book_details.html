@@ -16,12 +16,12 @@
 
     {% if "user_id" in session %}
     <form action="/rate_book" method="POST">
-        <h1>Book Review:</h1>
+        <h1>Book Review</h1>
         <p>
-            Rating: <input type="number" name="score" min="1" max="5">
+            Rating <input type="number" name="score" min="1" max="5">
         </p>
         <p>
-            Review: <input type="text" name="review">
+            Write a review <input type="text" name="review" id="review-field"></input>
         </p>
         <input style="display: none;" name="book_id" value="{{ book.book_id }}">
         <p>
@@ -31,7 +31,7 @@
     {% endif %}
 
     <div>
-        <h2>Book Reviews: </h2>
+        <h2>Book Reviews</h2>
         {% for rating in book.ratings %}
         <p>
 

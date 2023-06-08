@@ -16,7 +16,7 @@ body {
     bottom: 0px;
     left: 0px;
     font-family: monospace;
-
+    background-color: brown;
 }
 
 .details {
@@ -30,6 +30,7 @@ body {
     position: absolute;
     left: 0;
     right: 0;
+    border-radius: 2%;
 }
 
 p {
@@ -42,6 +43,7 @@ p {
     padding-bottom: 20px;
     margin-left: 20%; 
     margin-right: 20%;
+    border-radius: 2%;
 }
 
 #each-book {
@@ -65,9 +67,15 @@ p {
 .search-results {
     list-style-type: none;
 }
-
+.book-info{
+    display: flex;
+    justify-content: space-between;
+}
 .own-btn {
     margin: 5px;
 }
 
-
+#review-field {
+    width: 300px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+}
