@@ -30,7 +30,6 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    border-radius: 2%;
 }
 
 p {
@@ -64,6 +63,12 @@ p {
     padding: 10px;
 }
 
+.divider {
+    border-bottom: 1px solid black;
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+}
 .search-results {
     list-style-type: none;
 }
@@ -79,3 +84,8 @@ p {
     width: 300px; /* Adjust the width as needed */
     height: 50px; /* Adjust the height as needed */
 }
+
+/* .book-cover {
+        width: 100%; 
+
+} */
