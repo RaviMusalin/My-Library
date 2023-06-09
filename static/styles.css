@@ -31,7 +31,7 @@ body {
     align-items: center;
     text-align: center;
     background-color: white;
-    color: #E6D977;
+    color: hsl(53, 49%, 43%);
     padding-right: 25px;
     position: absolute;
     left: 0;
@@ -68,7 +68,7 @@ p {
     display: flex;
     position: relative;
     left: 0;
-    color: blue;
+    color: hsl(53, 49%, 43%);
 }
 
 #search-form {
@@ -142,4 +142,13 @@ p {
 #search-field {
     margin: 10px;
     margin-bottom: 15px;
+}
+
+#review-btn {
+    /* align-items: right; */
+    margin-top: 10px;
+}
+
+#review-btn a {
+    color: hsl(53, 49%, 43%);
 }

@@ -18,7 +18,10 @@
         <li id="each-book">
             <a id="book-title" href="/books/{{ book.book_id }}">{{ book.title }}</a>
             <p id="book-title">By: {{ book.author }}</p>
-            <img id="book-image" src="{{ book.book_cover }}"" />
+            <img id="book-image" src="{{ book.book_cover }}"/>
+            <div id="review-btn">
+                <button><a href="/books/{{ book.book_id }}">Review this book</a></button>
+            </div>
 </li>
   {% endfor %}
 </ul>
