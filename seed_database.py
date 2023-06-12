@@ -27,9 +27,7 @@ for book in book_data:
         book["title"],
         book["author"]
     )
-    # dictionary. Then, Get the ISBN and book cover (From API?)
 
-    # TODO: create a book here and append it to books_in_db
     db_book = crud.create_book(title, author)
     books_in_db.append(db_book)
 
@@ -38,9 +36,9 @@ model.db.session.commit()
 
 
 for n in range(10):
-    email = f"user{n}@test.com"  # Voila! A unique email!
+    email = f"user{n}@test.com"  
     password = "test"
-    username = f"{n}user" # placeholder for username
+    username = f"{n}user" 
 
     user = crud.create_user(username, email, password)
     model.db.session.add(user)
@@ -48,7 +46,7 @@ for n in range(10):
     for _ in range(10):
         random_book = choice(books_in_db)
         score = randint(1, 5)
-        body = "This is a test body text" # Placeholder for written review 
+        body = "This is a test body text" 
 
         rating = crud.create_rating(user, random_book, score, body)
         model.db.session.add(rating)

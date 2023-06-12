@@ -23,6 +23,7 @@ class User(db.Model):
     def __repr__(self):
         return f"<User user_id={self.user_id} username={self.username} email={self.email}>"
 
+
 class Owned(db.Model):
     """A table of the books a user owns"""
 
@@ -32,11 +33,10 @@ class Owned(db.Model):
     book_id = db.Column(db.Integer, db.ForeignKey("books.book_id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
-    # books = db.relationship("Book", back_populates="ownedbook")
-    # user = db.relationship("User", back_populates="ownedbook")
 
     def __repr__(self):
         return f"<Owned owned_books_id={self.owned_book_id}>"
+
 
 class Book(db.Model):
     """A Book."""
@@ -50,7 +50,6 @@ class Book(db.Model):
     book_cover = db.Column(db.String)
 
     ratings = db.relationship("Rating", back_populates="books")
-    # ownedbook = db.relationship("Owned", back_populates="books")
     users = db.relationship("User", secondary="owned_books", back_populates="users_library")
 
     def __repr__(self):
@@ -59,8 +58,6 @@ class Book(db.Model):
 
 class Rating(db.Model):
     """A book rating."""
-    # def __init__(self, ):
-    # Possibe solution - primary key?
 
     __tablename__ = "ratings"
 
@@ -76,8 +73,6 @@ class Rating(db.Model):
     def __repr__(self):
         return f"<Rating rating_id={self.rating_id} score={self.score}>"
     
-
-
 
 def connect_to_db(flask_app, db_uri="postgresql:///booksdb", echo=True):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri

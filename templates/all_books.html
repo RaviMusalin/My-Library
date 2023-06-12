@@ -3,21 +3,21 @@
 
 {% block body %}
 <div class="details">
-<h1>All Books</h1>
+    <h1>All Books</h1>
 
-<ul id="book_library">
-    {% for book in books %}
-    <li id="each-book">
-        <a id="book-title" href="/books/{{ book.book_id }}">
-            {{ book.title }}
-        </a>
-        <p id="book-title">By: {{ book.author }}</p>
-        <img id="book-image" src="{{book.book_cover}}">
-        <div id="review-btn">
-        <button><a href="/books/{{ book.book_id }}">Reviews</a></button>
-    </div>
-    </li>
-    {% endfor %}
-</ul>
+    <ul id="book_library">
+        {% for book in books %}
+        <li id="each-book">
+            <a id="book-title" href="/books/{{ book.book_id }}">
+                {{ book.title }}
+            </a>
+            <p id="book-title">By: {{ book.author }}</p>
+            <img id="book-image" src="{{book.book_cover}}">
+            <div id="review-btn">
+                <button><a href="/books/{{ book.book_id }}">Reviews</a></button>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}

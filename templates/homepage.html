@@ -5,51 +5,51 @@
 
 
 <div id="hompage-wrapper">
-  <div class="user-form">
-    
-    <div>
-      <h2 class="form-header" id="create">Create an Account</h2>
-      <form action="/users" method="POST">
+    <div class="user-form">
 
-        <p>
-          <title> Email </title>
-          Email
-          <input type="text" name="email">
-        </p>
-        <p>
-          <title> Username </title>
-          Username
-          <input type="text" name="username">
-        </p>
-        <p>
-          <title> Password </title>
-          Password
-          <input type="password" name="password">
-        </p>
+        <div>
+            <h2 class="form-header" id="create">Create an Account</h2>
+            <form action="/users" method="POST">
 
-        <p>
-          <input type="submit">
-        </p>
-      </form>
+                <p>
+                    <title> Email </title>
+                    Email
+                    <input type="text" name="email">
+                </p>
+                <p>
+                    <title> Username </title>
+                    Username
+                    <input type="text" name="username">
+                </p>
+                <p>
+                    <title> Password </title>
+                    Password
+                    <input type="password" name="password">
+                </p>
+
+                <p>
+                    <input type="submit">
+                </p>
+            </form>
+        </div>
+
+        <div>
+            <h2 class="form-header" id="login">Log In</h2>
+            <form action="/login" method="POST">
+                <p>
+                    Username <input type="text" name="username">
+                </p>
+
+                <p>
+                    Password <input type="password" name="password">
+                </p>
+
+                <p>
+                    <input type="submit">
+                </p>
+            </form>
+        </div>
     </div>
-
-    <div>
-      <h2 class="form-header" id="login">Log In</h2>
-      <form action="/login" method="POST">
-        <p>
-          Username <input type="text" name="username">
-        </p>
-
-        <p>
-          Password <input type="password" name="password">
-        </p>
-
-        <p>
-          <input type="submit">
-        </p>
-      </form>
-    </div>
-  </div>
 </div>
 
-  {% endblock %}
+{% endblock %}

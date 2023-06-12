@@ -4,20 +4,16 @@
 
 {% block body %}
 <div class="details">
-<h1>Find a book here!</h1>
+    <h1>Find a book here!</h1>
 
 
-{% if "user_id" in session %}
-<form method="GET" action="/search/results" id="search-form">
-      <p>Search for a book: <input
-        id="search-keyword"
-        type="text"
-        name="search_keyword"
-        placeholder="Enter title or author"
-      >
-      </p>
-      <input type="submit" id="search-field">
-</form>
+    {% if "user_id" in session %}
+    <form method="GET" action="/search/results" id="search-form">
+        <p>Search for a book: <input id="search-keyword" type="text" name="search_keyword"
+                placeholder="Enter title or author">
+        </p>
+        <input type="submit" id="search-field">
+    </form>
 </div>
 {% endif %}
 

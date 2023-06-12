@@ -18,7 +18,7 @@ def create_book(title, author, isbn=None, book_cover=None):
         title=title,
         author=author,
         isbn=isbn,
-        book_cover=book_cover # Book cover from API?
+        book_cover=book_cover 
     )
 
     return book
@@ -29,16 +29,15 @@ def get_books():
 
     return Book.query.all()
 
+
 def get_users_library(user_id):
 
-    
     user = get_user_by_id(user_id)
     
-    if user: # make sure we actually got a User
+    if user: 
         return user.users_library
     else:
         return []
-
     
 
 def create_rating(user, book, score, body):
@@ -48,45 +47,53 @@ def create_rating(user, book, score, body):
 
     return rating
 
+
 def book_details_by_id(book_id):
     """Gets a book by it's book id"""
 
     return Book.query.get(book_id)
+
 
 def user_details():
     """Gets all users"""
 
     return User.query.all()
 
+
 def get_user_by_id(user_id):
     """Gets the details of a specific user"""
 
     return User.query.get(user_id)
+
 
 def get_user_by_email(email):
     """Gets a user by checking to see if the email exists"""
    
     return User.query.filter(User.email == email).first()
 
+
 def get_user_by_username(username):
     """Get user by username"""
     
     return User.query.filter(User.user_name == username).first()
+
 
 def get_book_by_isbn(isbn):
     """Get book by isbn"""
 
     return Book.query.filter(Book.isbn == isbn).first()
 
-# Get the number of ratings for a book 
+
 def get_total_ratings(book_id):
     """Get how many ratings there are for a book"""
     
     return Rating.query.filter(Rating.book_id == book_id).count()
 
+
 def ratings_by_id(book_id):
 
     return Rating.query.filter(Rating.book_id == book_id).all()
+
 
 def average_rating(book_id):
     """Calculates the average rating score"""

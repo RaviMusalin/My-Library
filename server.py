@@ -50,18 +50,8 @@ def book_details(book_id):
 
     book = crud.book_details_by_id(book_id)
     avg_ratings = crud.average_rating(book_id)
-    print(avg_ratings)
     return render_template("book_details.html", book=book, avg_ratings=avg_ratings)
 
-
-# FIX THIS ROUTE
-# @app.route('/books/<book_id>')
-# def book_ratings(book_id):
-#     # Get all the ratings 
-#     book = crud.book_details_by_id(book_id)
-#     ratings = crud.get_book_ratings(book_id)
-
-#     return render_template("book_details.html", book=book, ratings=ratings)
 
 @app.route('/users/<user_id>')
 def get_user_details(user_id):
@@ -81,7 +71,7 @@ def all_users():
     return render_template("users.html", users=users)
 
 
-@app.route('/users', methods=["POST"]) # Why are we allowed two users routes?: Any issues with this?
+@app.route('/users', methods=["POST"])
 def register_user():
     """Create a new user."""
 
@@ -100,15 +90,12 @@ def register_user():
 
     return redirect("/")
 
-#  REFER BACK TO API LECTURE
-
 
 @app.route('/login', methods=["POST"])
 def user_login():
     """User login"""
 
     username = request.form.get("username")
-    # email = request.form.get("email")
     password = request.form.get("password")
 
     user = crud.get_user_by_username(username)
@@ -117,9 +104,8 @@ def user_login():
         flash("Please check your login credentials")
         return redirect('/')
             
-    else:# Log in user by storing the user's username in session
+    else: # Log in user by storing the user's username in session
         session["user_id"] = user.user_id
-        # flash(f"Welcome back, {user.user_name}!")    
         
         return redirect('/user_details')
 
@@ -141,7 +127,7 @@ def user_library():
 
         print(user_library)
 
-        return render_template("user_details.html", user = user, user_library = user_library)# Does logging in save to local DB?
+        return render_template("user_details.html", user = user, user_library = user_library)
     
     else:
         flash("Please log in") 
@@ -150,7 +136,6 @@ def user_library():
 
 @app.route('/rate_book', methods=["POST"])
 def book_rating():
-    # FINISH FUNCTION TO ADD RATING TO DATABASE
     score = request.form.get("score")
     body = request.form.get("review")
     user_id = session["user_id"]
@@ -162,6 +147,7 @@ def book_rating():
     new_rating = crud.create_rating(user, book, score, body)
     db.session.add(new_rating)
     db.session.commit()
+
 
     book.ratings.append(new_rating)
     db.session.commit()
@@ -189,7 +175,6 @@ def book_search_results():
     for book in books:
         if 'industryIdentifiers' in book['volumeInfo']:
             books_isbn.append(book['volumeInfo']['industryIdentifiers'][0]['identifier'])
-        # books_isbn = [book['volumeInfo']['industryIdentifiers'][0]['identifier'] for book in books]
 
     if "user_id" in session:
         user_id = session["user_id"]
@@ -199,9 +184,9 @@ def book_search_results():
     user_isbns = [x.isbn for x in user_library]   
 
     filtered_books = [x for x in user_isbns if x in books_isbn] 
-# https://stackoverflow.com/questions/34288403/how-to-keep-elements-of-a-list-based-on-another-list
-# https://stackoverflow.com/questions/28644951/django-how-to-apply-conditional-attribute-to-html-element-in-template
+
     return render_template("search_results.html", books=books, user=user, user_isbns=user_isbns, books_isbn=books_isbn, filtered_books=filtered_books)
+
 
 @app.route('/saved_to_own', methods=["POST"])
 def save_book_to_owned():
@@ -225,6 +210,7 @@ def save_book_to_owned():
     db.session.commit()
 
     return "book saved"
+
 
 @app.route('/return')
 def go_back():

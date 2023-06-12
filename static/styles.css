@@ -6,10 +6,7 @@
     color: black;
 }
 
-
-
 body {
-    /* background: linear-gradient(-70deg, #fa7c30 30%, rgba(0, 0, 0, 0) 30%), url("library_picture.jpeg"); */
     background-image: url("library_picture.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -21,8 +18,8 @@ body {
     font-family: monospace;
     background-color: #613613;
     background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .details {
@@ -124,14 +121,13 @@ p {
 }
 
 .review-contents {
-   text-align: left;
-   padding-left: 10px;
+    text-align: left;
+    padding-left: 10px;
 }
 
 .review-css {
     border: .2px solid #E6D977;
     padding: 1px;
-    /* box-shadow:0 0 4px 4px rgba(0,0,0,0.06); */
     border-radius: 2%;
 }
 
@@ -145,7 +141,6 @@ p {
 }
 
 #review-btn {
-    /* align-items: right; */
     margin-top: 10px;
 }
 
