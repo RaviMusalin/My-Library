@@ -29,18 +29,17 @@ MyLibrary is built using Flask and Python as the backend server, PostgreSQL as a
 <p align="center">
   <img src="/static/Login.png">
 
-  <p>The night is dark and full of terrors. The winds of Winter. What is dead may never die. And now his watch is ended. The battle of the redgrass field. Unbowed, Unbent, Unbroken. All men must die.</p>
+  <p>Once logged in the user is taken to their profile which displays their library: the books that they own</p>
 
   <img src="/static/User_Profile.png">
 
-  <p>The night is dark and full of terrors. The winds of Winter. What is dead may never die. And now his watch is ended. The battle of the redgrass field. Unbowed, Unbent, Unbroken. All men must die.</p>
+  <p>Once a user enters in a title, author or ISBN number they are brought, the data from the API is displayed on this page</p>
 
   <img src="/static/Book_Search.png">
 
-  <p>The night is dark and full of terrors. The winds of Winter. What is dead may never die. And now his watch is ended. The battle of the redgrass field. Unbowed, Unbent, Unbroken. All men must die.</p>
+  <p>The Review page allows for a user to give a 1 to 5 rating and write a review for a book. It also allows for a user to read other users reviews for a book. </p>
 
   <img src="/static/Book_Review.png">
   <img src="/static/User_Reviews.png">
 
-   <p>The night is dark and full of terrors. The winds of Winter. What is dead may never die. And now his watch is ended. The battle of the redgrass field. Unbowed, Unbent, Unbroken. All men must die.</p>
 </p>
