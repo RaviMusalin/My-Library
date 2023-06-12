@@ -1,23 +1,29 @@
 # MyLibrary App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Summary
 
-## Available Scripts
+MyLibrary is a app that allows for users to keep track of the books that they own. It also allows users to rate the books that they own and read reviews of books from other users. 
 
-In the project directory, you can run:
+## About me
 
-### `npm start`
+Ravi Musalin is a developer based out of NYC. This app was created during my time in a coding bootcamp with Hackbright Academy. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Tech Stack:
+    - Python
+    - Flask
+    - SQLAlchemy
+    - PostgreSQL
+    - JavaScript
+    - Jinja2
+    - CSS
+    - HTML 
+    - Bootstrap
+    - Google Books API
 
-### `npm test`
+MyLibrary is built using Flask and Python as the backend server, PostgreSQL as a database, along with Jinja, CSS, HTML and a little bit of Bootstrap for front end design and styling. The application utilizes the Google Books API which makes calls whenever a user makes searches by title, author or ISBN number.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
