@@ -28,4 +28,6 @@ MyLibrary is built using Flask and Python as the backend server, PostgreSQL as a
 
 <p align="center">
   <img src="/static/Login.png">
+
+  <h2>Test test test</h2>
 </p>
