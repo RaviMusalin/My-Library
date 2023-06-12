@@ -29,5 +29,5 @@ MyLibrary is built using Flask and Python as the backend server, PostgreSQL as a
 <p align="center">
   <img src="/static/Login.png">
 
-  <h2>Test test test</h2>
+  <p>The night is dark and full of terrors. The winds of Winter. What is dead may never die. And now his watch is ended. The battle of the redgrass field. Unbowed, Unbent, Unbroken. All men must die.</p>
 </p>
