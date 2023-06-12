@@ -26,5 +26,7 @@ MyLibrary is built using Flask and Python as the backend server, PostgreSQL as a
 
 ## Features
 
-![Screenshot](Login.png)
-
+<p align="center">
+  <img src="/static/Login.png" width="350" title="hover text">
+  <img src="your_relative_path_here_number_2_large_name" width="350" alt="accessibility text">
+</p>
