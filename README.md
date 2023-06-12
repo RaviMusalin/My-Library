@@ -40,7 +40,6 @@ MyLibrary is built using Flask and Python as the backend server, PostgreSQL as a
   <p>The night is dark and full of terrors. The winds of Winter. What is dead may never die. And now his watch is ended. The battle of the redgrass field. Unbowed, Unbent, Unbroken. All men must die.</p>
 
   <img src="/static/Book_Review.png">
-
   <img src="/static/User_Reviews.png">
 
    <p>The night is dark and full of terrors. The winds of Winter. What is dead may never die. And now his watch is ended. The battle of the redgrass field. Unbowed, Unbent, Unbroken. All men must die.</p>
