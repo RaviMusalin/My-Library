@@ -11,7 +11,7 @@ def get_API_data(keyword):
     API_KEY = os.environ["GOOGLE_KEY"]
 
     payload = {'q': {keyword}, 'key': API_KEY}
-    res = requests.get('https://www.googleapis.com/books/v1/volumes?', params=payload)
+    res = requests.get('https://www.googleapis.com/books/v1/volumes?&maxResults=40', params=payload)
 
     book_data = res.json()
     book_results = book_data['items']
