@@ -33,7 +33,7 @@ MyLibrary is built using Flask and Python as the backend server, PostgreSQL as a
 
   <img src="/static/User_Profile.png">
 
-  <p>Once a user enters in a title, author or ISBN number they are brought, the data from the API is displayed on this page</p>
+  <p>Once a user enters in a title, author or ISBN number and make a search, the data from the Google Books API is returned on this page</p>
 
   <img src="/static/Book_Search.png">
 
